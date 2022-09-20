@@ -102,6 +102,7 @@ def set_view_metadata(view, note, reset_modified=True):
     view.settings().set("$evernote", True)
     view.settings().set("$evernote_guid", note.guid)
     view.settings().set("$evernote_title", note.title)
+    view.settings().set("$evernote_created", note.created)
     if reset_modified:
         note_is_current(view)
 
@@ -513,11 +514,12 @@ class EvernoteDo():
         content = '<?xml version="1.0" encoding="UTF-8"?>'
         content += '<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">'
         content += '<en-note%s>' % wrapper_style
-        hidden = ('\n%s%s%s\n' %
-                    (SUBLIME_EVERNOTE_COMMENT_BEG,
-                     b64encode(contents.encode('utf8')).decode('utf8'),
-                     SUBLIME_EVERNOTE_COMMENT_END))
-        content += hidden
+        if self.settings.get('use_legacy_comments', False):
+            hidden = ('\n%s%s%s\n' %
+                        (SUBLIME_EVERNOTE_COMMENT_BEG,
+                         b64encode(contents.encode('utf8')).decode('utf8'),
+                         SUBLIME_EVERNOTE_COMMENT_END))
+            content += hidden
         content += body
         LOG(body)
         content += '</en-note>'
@@ -1090,7 +1092,8 @@ class OpenEvernoteNotesCommand(EvernoteDoWindow):
             newview.set_scratch(True)
             replace_view_text(newview, note_contents)
             newview.set_name(note.title)
-            newview.settings().set("$evernote_guid", note.guid)
+            # newview.settings().set("$evernote_guid", note.guid)
+            set_view_metadata(newview, note, False)
             self.message('Note "%s" opened!' % note.title)
             self.update_status_info(note, newview)
             # note_is_current(newview)
@@ -1389,7 +1392,9 @@ class EvernoteShowAttachments(EvernoteDoText):
                         self.token(), note.resources[i].guid,
                         True, False, False, False).data.body
                     mime = resources[i].mime or "application/octet-stream"
-                    _, tmp = tempfile.mkstemp(mimetypes.guess_extension(mime) or "")
+                    ext = mimetypes.guess_extension(mime) or ""
+                    if ext == ".jpe": ext = ".jpg"
+                    _, tmp = tempfile.mkstemp(ext)
                     mime = mime.split("/")[0]
                     with open(tmp, 'wb') as tmpf:
                         tmpf.write(contents)
