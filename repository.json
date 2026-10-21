@@ -5,6 +5,7 @@
             "name": "Evernote",
             "description": "Evernote / 印象笔记 integration: send, open, search and update notes from Markdown, with attachments, code highlighting and full metadata support. Runs on Sublime Text 4.",
             "author": "chinakr",
+            "details": "https://github.com/chinakr/sublime-evernote",
             "homepage": "https://github.com/chinakr/sublime-evernote",
             "issues": "https://github.com/chinakr/sublime-evernote/issues",
             "readme": "https://raw.githubusercontent.com/chinakr/sublime-evernote/master/README.md",
