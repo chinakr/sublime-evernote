@@ -1,4 +1,7 @@
 {
+    // Service host: "www.evernote.com" for international Evernote,
+    // "app.yinxiang.com" for 印象笔记 (Evernote China).
+    "evernote_host": "www.evernote.com",
     // inline_css is documented at https://github.com/bordaigorl/sublime-evernote/wiki/Styling
     "inline_css": {
         "body": "",

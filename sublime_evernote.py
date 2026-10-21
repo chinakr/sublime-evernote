@@ -45,6 +45,10 @@ from base64 import b64encode, b64decode
 EVERNOTE_PLUGIN_VERSION = "2.7.3"
 USER_AGENT = {'User-Agent': 'SublimeEvernote/' + EVERNOTE_PLUGIN_VERSION}
 
+# International Evernote service. Yinxiang (印象笔记) users should set
+# "evernote_host" to "app.yinxiang.com" in their Evernote.sublime-settings.
+EVERNOTE_HOST_DEFAULT = "www.evernote.com"
+
 EVERNOTE_SETTINGS = "Evernote.sublime-settings"
 SUBLIME_EVERNOTE_COMMENT_BEG = "<!-- Sublime:"
 SUBLIME_EVERNOTE_COMMENT_END = "-->"
@@ -388,7 +392,8 @@ class EvernoteDo():
 
         def __derive_note_store_url(token):
             id = self.get_shard_id(token)
-            url = "www.evernote.com/shard/" + id + "/notestore"
+            host = self.settings.get("evernote_host") or EVERNOTE_HOST_DEFAULT
+            url = host + "/shard/" + id + "/notestore"
             if ssl:
                 url = "https://" + url
             else:
@@ -410,7 +415,8 @@ class EvernoteDo():
         token = self.token()
         noteStoreUrl = self.settings.get("noteStoreUrl")
         if not token or not noteStoreUrl:
-            webbrowser.open_new_tab("https://www.evernote.com/api/DeveloperToken.action")
+            host = self.settings.get("evernote_host") or EVERNOTE_HOST_DEFAULT
+            webbrowser.open_new_tab("https://%s/api/DeveloperToken.action" % host)
             self.window.show_input_panel(
                 "Developer Token (required):", token or "",
                 on_token, None, None)

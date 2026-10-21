@@ -73,6 +73,13 @@ If you need to reconfigure the plugin go to `Preferences > Package Settings > Ev
 > The authentication method makes use of the Developer Token which is unique to your account and grants read-write access to your Evernote.
 > This token will be saved in your user settings in the `Evernote.sublime-settings` file so make sure you do not share this publicly! 
 
+> **印象笔记 (Evernote China) USERS**
+>
+> If you use 印象笔记 instead of international Evernote, set `"evernote_host": "app.yinxiang.com"`
+> in `Preferences > Package Settings > Evernote > Settings` **before** configuring the token:
+> the developer token page (`https://app.yinxiang.com/api/DeveloperToken.action`) and the
+> note store URL will then be derived from the Yinxiang service.
+
 
 # Issues
 
@@ -246,6 +253,7 @@ The following settings can be customised:
 
 Setting                   | Purpose
 --------------------------|------------------------
+`evernote_host`           | the service host to connect to: `www.evernote.com` (default, international Evernote) or `app.yinxiang.com` for 印象笔记 (Evernote China). The developer token page and the note store URL are derived from it.
 `md_syntax`               | a string pointing to a `tmLanguage` file which you want to associate with notes opened from Evernote.
 `inline_css`              | a dictionary associating some HTML element names to inline CSS styles; this setting is documented in the [wiki](https://github.com/bordaigorl/sublime-evernote/wiki/Styling). The markdown of a note can contain (almost) arbitrary HTML blocks *but* Evernote only accepts a subset of the elements and attributes (`class` and `id` are disallowed). See [here](http://dev.evernote.com/doc/articles/enml.php) for details.
 `code_highlighting_style` | a pygments style among `autumn`, `default`, `github`, `monokai`, `perldoc`, `vim`, `borland`, `emacs`, `igor`, `murphy`, `rrt`, `vs`,   `bw`, `friendly`, `native`, `tango`, `xcode`,   `colorful`, `fruity`, `manni`, `pastie`, `trac`.
