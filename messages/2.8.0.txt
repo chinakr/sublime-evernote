@@ -1,0 +1,20 @@
+Evernote for Sublime Text v2.8.0
+================================
+
+Thanks for updating the Evernote plugin!
+
+Highlights of v2.8.0:
+
+ * Sublime Text 4 support: the plugin now runs on ST4's Python 3.14
+   plugin host (it keeps declaring Python 3.8 via .python-version,
+   which ST4 maps to the new host automatically).
+ * 印象笔记 (Evernote China) support: set "evernote_host" to
+   "app.yinxiang.com" in Evernote.sublime-settings and the developer
+   token page and note store URL will use the Chinese service.
+ * The package is now fully self-contained: pygments is vendored
+   inside the package, so it works on fresh installs without
+   Package Control dependencies.
+
+If you encounter any problem, open an issue at
+https://github.com/chinakr/sublime-evernote/issues
+and enable the "debug" setting to collect console output.

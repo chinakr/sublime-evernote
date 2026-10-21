@@ -42,7 +42,7 @@ from datetime import datetime
 
 from base64 import b64encode, b64decode
 
-EVERNOTE_PLUGIN_VERSION = "2.7.3"
+EVERNOTE_PLUGIN_VERSION = "2.8.0"
 USER_AGENT = {'User-Agent': 'SublimeEvernote/' + EVERNOTE_PLUGIN_VERSION}
 
 # International Evernote service. Yinxiang (印象笔记) users should set

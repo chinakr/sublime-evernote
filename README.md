@@ -32,6 +32,15 @@ See [Commands](#commands) and the [wiki] for details.
 
 ## What's new
 
+**v2.8.0**
+
++ Feature: runs on Sublime Text 4 (Python 3.14 plugin host; `.python-version` kept as `3.8` which ST4 maps to the new host)
++ Feature: support for 印象笔记 (Evernote China) via the new `evernote_host` setting (`app.yinxiang.com`)
++ Fix: vendor pygments inside the package so it works without Package Control (fresh installs crashed on first use)
++ Fix: adapt bundled markdown2 to the pygments >= 2.19 `HtmlFormatter.wrap` API
++ Fix: replace deprecated `imp.reload` with `importlib.reload`
++ Chore: bundled html2text cleaned of Python 3.8+ SyntaxWarnings
+
 **v2.7.3**
 
 + Fix: patching Evernote's SDK to fix an issue due to undocumented changes in API (fixes #216)
