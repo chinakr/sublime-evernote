@@ -1603,8 +1603,11 @@ class Markdown(object):
                 yield 0, "</code>"
                 yield 0, "</pre>"
 
-            def wrap(self, source, outfile):
+            def wrap(self, source, outfile=None):
                 """Return the source with a code, pre, and div."""
+                # pygments >= 2.19 calls wrap(source) with a single argument
+                # and handles div/pre wrapping itself; older versions pass
+                # (source, outfile). Support both signatures.
                 # return self._wrap_div(self._wrap_pre(self._wrap_code(source)))
                 return self._wrap_code(source)
 
