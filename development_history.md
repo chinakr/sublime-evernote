@@ -89,7 +89,7 @@
 - 打包库在 3.14 下全部工作：evernote SDK + thrift、markdown2、html2text；
 - 命令面板正确列出全部 Evernote 命令（Search Note / Create New Notebook / Open Evernote Note / Attach... 等）。
 
-**发现并修复的真 bug（commit `cf0425d`）**
+**发现并修复的真 bug（commit `f88df10`）**
 1. **pygments 缺失**：`dependencies.json` 声明由 Package Control 安装 pygments，但全新 ST4 没有 PC → 首次执行任何 Evernote 命令（`load_settings` 懒加载 `code_highlighting_style`）即 `ModuleNotFoundError`。修复：vendor pygments 2.21.0 进 `lib/pygments`，`dependencies.json` 置空，插件完全自包含。
 2. **markdown2 不兼容 pygments ≥2.19**：pygments 改了 `HtmlFormatter.wrap` 签名（单参调用、div/pre 外移），markdown2 的 `HtmlCodeFormatter.wrap(self, source, outfile)` 会 TypeError。修复：`outfile=None` 双兼容签名。
 3. 修复后按插件真实参数链路验证：`fenced-code-blocks + noclasses=True + GithubStyle` 输出内联样式 `<span style="color:...">`（Evernote 只支持内联样式，不支持 class）。
@@ -115,7 +115,7 @@
 
 ### 助手回复摘要
 
-**印象笔记（Evernote China）支持（commit `68fa20a`）**
+**印象笔记（Evernote China）支持（commit `05af34d`）**
 - 插件原硬编码 `www.evernote.com`（token 页 + NoteStore 推导）。新增 `evernote_host` 设置（默认 `www.evernote.com`），印象笔记用户设为 `app.yinxiang.com` 即可；WebApp 视图 URL 本就从 noteStoreUrl 派生，自动兼容。
 - 同步更新默认 `Evernote.sublime-settings` 与 README（含印象笔记用户指引段落）。
 
