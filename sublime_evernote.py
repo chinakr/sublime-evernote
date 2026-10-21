@@ -10,10 +10,11 @@ except:
     ssl = None
 
 if sys.version_info < (3, 3):
-    raise RuntimeError('The Evernote plugin works with Sublime Text 3 only')
+    raise RuntimeError('The Evernote plugin requires Sublime Text 3 or 4')
 
-# NOTE: OAuth was not implemented, because the Python 3 that is built into Sublime Text 3 was
-# built without SSL. So, among other things, this means no http.client.HTTPSRemoteConnection
+# NOTE: OAuth was not implemented. The Python 3 built into Sublime Text 3 was
+# built without SSL. Sublime Text 4 ships Python 3.8 with SSL support,
+# so the https paths below work natively there.
 
 package_file = os.path.normpath(os.path.abspath(__file__))
 package_path = os.path.dirname(package_file)
@@ -548,7 +549,7 @@ class EvernoteDoText(EvernoteDo, sublime_plugin.TextCommand):
 
     def run(self, edit, **kwargs):
         if DEBUG:
-            from imp import reload
+            from importlib import reload
             reload(markdown2)
             reload(html2text)
 
@@ -569,7 +570,7 @@ class EvernoteDoWindow(EvernoteDo, sublime_plugin.WindowCommand):
 
     def run(self, **kwargs):
         if DEBUG:
-            from imp import reload
+            from importlib import reload
             reload(markdown2)
             reload(html2text)
 
@@ -1181,14 +1182,14 @@ class InsertLinkToEvernoteNote(OpenEvernoteNoteCommand):
 
 # Note that this regex needs to work with both Python as well as Sublime.
 _EVERNOTE_LINK_REGEX = \
-    '\[(.+)\]' \
-    '\(' \
-    'evernote:///view/' \
-    '\d+/' \
-    's\d+/' \
-    '([0-9a-f-]+)/' \
-    '[0-9a-f-]+/' \
-    '\)'
+    r'\[(.+)\]' \
+    r'\(' \
+    r'evernote:///view/' \
+    r'\d+/' \
+    r's\d+/' \
+    r'([0-9a-f-]+)/' \
+    r'[0-9a-f-]+/' \
+    r'\)'
 
 
 class OpenLinkedEvernoteNote(EvernoteDoText):

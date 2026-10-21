@@ -9,9 +9,9 @@ Evernote for Sublime Text
 [![paypal badge]][paypal]
 [![chat badge]][gitter]
 
-[Sublime Text](http://www.sublimetext.com/3) plugin for [Evernote](http://www.evernote.com).
+[Sublime Text](http://www.sublimetext.com/) plugin for [Evernote](http://www.evernote.com).
 
-This package is based on [SublimeEvernote](https://github.com/jamiesun/SublimeEvernote) for ST2 but is only supported on ST3 and adds many new features.
+This package is based on [SublimeEvernote](https://github.com/jamiesun/SublimeEvernote) for ST2, was originally only supported on ST3, and now also runs on ST4 (Python 3.8).
 
 To start using it install it from Package Control and type "Evernote" on the Command Palette (<kbd>ctrl+shift+p</kbd>).
 See [First Use](https://github.com/bordaigorl/sublime-evernote#first-use) for linking the plugin to your account.
@@ -61,7 +61,7 @@ See the [wiki] for detailed instructions.
 > After they activate you, you can follow the normal procedure
 > to configure the plugin.
 
-When you first run this package from the command palette, it will launch a browser window with your Evernote developer token. Copy the token and paste it into the prompt at the bottom of your Sublime window. Sublime will store the authentication data in `Sublime Text 3/Packages/User/Evernote.sublime-settings`.
+When you first run this package from the command palette, it will launch a browser window with your Evernote developer token. Copy the token and paste it into the prompt at the bottom of your Sublime window. Sublime will store the authentication data in `Packages/User/Evernote.sublime-settings`.
 
 If you need to reconfigure the plugin go to `Preferences > Package Settings > Evernote` and select `Reconfigure Authorisation` or go to
 
