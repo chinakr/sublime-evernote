@@ -40,6 +40,7 @@ See [Commands](#commands) and the [wiki] for details.
 + Fix: adapt bundled markdown2 to the pygments >= 2.19 `HtmlFormatter.wrap` API
 + Fix: replace deprecated `imp.reload` with `importlib.reload`
 + Chore: bundled html2text cleaned of Python 3.8+ SyntaxWarnings
++ Note: the vendored code highlighter (pygments 2.21) requires Python 3.9+; on Sublime Text 3 custom highlight styles degrade gracefully — ST3 users who need full features should stay on upstream v2.7.4
 
 **v2.7.3**
 
