@@ -201,6 +201,25 @@
 
 ---
 
+## 2026-10-21 会话 9：Package Control 安装与插件自安装
+
+### 提示词 11
+
+> 帮我安装Package Control，然后使用自定义源安装插件。
+> 我来解锁屏幕，你来继续操作。
+
+### 助手回复摘要
+
+- **Package Control 安装**：ST4 已内置 "Install Package Control…"（Tools 菜单），自动化点击完成安装。
+- **自定义源**：通过 "Package Control: Add Repository" 添加 fork 的 repository.json（PC 将其写入自身配置）。
+- **排查过程**：安装列表一度只显示上游旧条目。两个原因依次解决：
+  1. PC4 拒绝缺 root-level `details` 键的包定义（此前 repository.json 用的是 `homepage`），补上 `details` 后我们的条目正确出现在列表（`Evernote 2.8.0`）并覆盖官方条目；
+  2. 一个模态错误弹窗（残留视图引用已移除的 Evernote 语法）会**阻塞 plugin_host 启动**——点掉弹窗后宿主立即恢复。
+- **安装成功**：`Evernote.sublime-package`（1.4MB）装入 Installed Packages/（PC4 的安装方式），v2.8.0 安装欢迎页正常弹出，命令面板列出全部 Evernote 命令。
+- **本机提醒**：首次使用需完成 token 授权；建议先在印象笔记后台重新生成 token。
+
+---
+
 ## 维护约定
 
 - 每完成一个模块立即按 Conventional Commits 提交（feat/fix/test/docs/chore…）；
