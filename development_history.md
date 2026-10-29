@@ -236,6 +236,28 @@
 
 ---
 
+## 2026-10-29 会话 11：全局 git 身份与 v2.8.1 评审整改
+
+### 提示词 13
+
+> 请帮我配置全局git身份。
+> 请继续处理后续事项。
+
+### 助手回复摘要
+
+- **全局 git 身份**：设置 `user.name=chinakr`、`user.email=chinakr@gmail.com`，杜绝新仓库再自动生成含内网地址的作者邮箱。
+- **文档提交推送**：会话 10 的日志提交已推送至远端 master。
+- **评审 warning 整改（对照 kaste/st_package_reviewer 源码逐条确认判定逻辑）**：
+  1. **subprocess 隐藏窗口**：`open_file_with_app` 的两处 `subprocess.call` 仅在 osx/linux 分支执行（Windows 走 `os.startfile`），按评审器要求显式传 `startupinfo=startupinfo`（POSIX 上值为 None，等价默认参数，行为零变化）；vendor 库 4 处不动，在 PR 评论中说明属第三方上游代码。
+  2. **Key Bindings 菜单入口**：Main.sublime-menu 增加 `edit_settings` 条目（`base_file` 指向包内 Default.sublime-keymap；`user_file` 必须精确为 `${packages}/User/Default (${platform}).sublime-keymap`，否则评审器直接 fail）。
+  3. **语法设置入口**：用单个 `edit_settings`「Settings」条目替换原先两个 `open_file` 条目（Default+User 双栏），Default.sublime-commands 同步替换，并附 `args.default` 模板。
+  4. **ST3 兼容性查证**：`edit_settings` 命令自 ST 3.0 (build 3143, 2017) 即存在（3.0 changelog 含其 UNC 路径修复），不违反 ST3 兼容约束。
+- **回归测试**：新增 `tests/test_resources.py`（菜单/命令面板 JSON 合法性、edit_settings 条目形状与 base_file 存在性、messages.json 与版本常量一致性），全套 28 个测试通过。
+- **v2.8.1 发布准备**：版本常量、messages.json、`messages/2.8.1.txt`、README What's new 同步更新；打 tag 并推送，Release 由用户在浏览器通过预填链接创建（`tags: true` 机制读取 GitHub Releases）。
+- **决策记录**：多命令前缀（clear/evernote/new/replace/view）不整改——重命名会破坏现有用户习惯，违反「不破坏现有体验」约束，在 PR 评论中说明。
+
+---
+
 ## 维护约定
 
 - 每完成一个模块立即按 Conventional Commits 提交（feat/fix/test/docs/chore…）；

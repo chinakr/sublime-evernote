@@ -32,6 +32,11 @@ See [Commands](#commands) and the [wiki] for details.
 
 ## What's new
 
+**v2.8.1**
+
++ Fix: proper "Settings" and "Key Bindings" menu entries (via `edit_settings`) as recommended for Package Control distribution
++ Chore: silence static review warnings about helper processes and console windows on Windows
+
 **v2.8.0**
 
 + Feature: runs on Sublime Text 4 (Python 3.14 plugin host; `.python-version` kept as `3.8` which ST4 maps to the new host)

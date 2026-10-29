@@ -1,0 +1,17 @@
+Evernote for Sublime Text v2.8.1
+================================
+
+Thanks for updating the Evernote plugin!
+
+Highlights of v2.8.1:
+
+ * Package Control submission hygiene: the menu now offers proper
+   "Settings" and "Key Bindings" entries (edit_settings) so they are
+   easier to find and customize.
+ * Fixed static review warnings about hidden console windows when
+   spawning helper processes (no behavior change on macOS/Linux;
+   Windows already used os.startfile).
+
+If you encounter any problem, open an issue at
+https://github.com/chinakr/sublime-evernote/issues
+and enable the "debug" setting to collect console output.
