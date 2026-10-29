@@ -255,6 +255,8 @@
 - **回归测试**：新增 `tests/test_resources.py`（菜单/命令面板 JSON 合法性、edit_settings 条目形状与 base_file 存在性、messages.json 与版本常量一致性），全套 28 个测试通过。
 - **v2.8.1 发布准备**：版本常量、messages.json、`messages/2.8.1.txt`、README What's new 同步更新；打 tag 并推送，Release 由用户在浏览器通过预填链接创建（`tags: true` 机制读取 GitHub Releases）。
 - **决策记录**：多命令前缀（clear/evernote/new/replace/view）不整改——重命名会破坏现有用户习惯，违反「不破坏现有体验」约束，在 PR 评论中说明。
+- **`/review` 触发复审成功**：issue_comment 事件触发的 workflow 不需要维护者审批（区别于 pull_request 事件的 `action_required`），机器人对 fork 新 tip（含 v2.8.1）重评：**failure 清零**，Key Bindings/Settings 菜单、版本落后（「Tip of master is tagged with 2.8.1 ✅」）、插件自身 subprocess 三类警告全部消失；剩余警告为 vendor 库与 sys.path（有说明）及多命令前缀（决策保留）。
+- **复审暴露一条新警告并即时修复**：命令面板设置入口 caption 须以 `Preferences: Evernote` 开头（检查器 `required_prefix`），将 `Evernote Settings` 改为 `Preferences: Evernote Settings`，并新增 caption 规范回归测试（29 个测试通过）。发布包无消费者，按会话 6 先例重打 v2.8.1 tag 至修复提交（Release 页面随 tag 名自动更新源码包）。
 
 ---
 
