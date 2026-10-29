@@ -13,7 +13,7 @@
     { "command": "insert_link_to_evernote_note", "args": {"max_notes": 10, "by_searching": "*", "order": "updated", "ascending": false}, "caption": "Evernote: Insert link to a note (recent)" },
     { "command": "list_linked_evernote_notes", "caption": "Evernote: List linked notes" },
     {
-        "caption": "Evernote Settings",
+        "caption": "Preferences: Evernote Settings",
         "command": "edit_settings", "args":
         {
             "base_file": "${packages}/Evernote/Evernote.sublime-settings",

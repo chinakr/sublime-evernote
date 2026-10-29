@@ -97,6 +97,19 @@ class TestCommandPalette(unittest.TestCase):
             entries, "Default.sublime-commands must offer an edit_settings "
                      "entry for the package settings")
 
+    def test_settings_entry_caption_convention(self):
+        # Package Control review requires palette entries for editing
+        # settings to start with "Preferences: <PackageName>".
+        commands = load_resource("Default.sublime-commands")
+        for node in commands:
+            if node.get("command") == "edit_settings":
+                caption = str(node.get("caption", ""))
+                self.assertTrue(
+                    caption.startswith("Preferences: Evernote"),
+                    "settings palette entry caption must start with "
+                    "'Preferences: Evernote': %s" % caption)
+                self.assertIn("Settings", caption)
+
 
 class TestVersionConsistency(unittest.TestCase):
 
