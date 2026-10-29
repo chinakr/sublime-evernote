@@ -42,7 +42,7 @@ from datetime import datetime
 
 from base64 import b64encode, b64decode
 
-EVERNOTE_PLUGIN_VERSION = "2.8.0"
+EVERNOTE_PLUGIN_VERSION = "2.8.1"
 USER_AGENT = {'User-Agent': 'SublimeEvernote/' + EVERNOTE_PLUGIN_VERSION}
 
 # International Evernote service. Yinxiang (印象笔记) users should set
@@ -1368,12 +1368,15 @@ class EvernoteInsertAttachment(EvernoteDoText):
 
 def open_file_with_app(filepath):
     import subprocess
+    # startupinfo is only meaningful on Windows, where os.startfile() is used
+    # below and no console window can flash; POSIX requires it to stay None.
+    startupinfo = None
     if sublime.platform() == "osx":
-        subprocess.call(('open', filepath))
+        subprocess.call(('open', filepath), startupinfo=startupinfo)
     elif sublime.platform() == "windows":
         os.startfile(filepath)
     elif sublime.platform() == "linux":
-        subprocess.call(('xdg-open', filepath))
+        subprocess.call(('xdg-open', filepath), startupinfo=startupinfo)
 
 
 def hashstr(h):
