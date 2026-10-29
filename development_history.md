@@ -257,6 +257,7 @@
 - **决策记录**：多命令前缀（clear/evernote/new/replace/view）不整改——重命名会破坏现有用户习惯，违反「不破坏现有体验」约束，在 PR 评论中说明。
 - **`/review` 触发复审成功**：issue_comment 事件触发的 workflow 不需要维护者审批（区别于 pull_request 事件的 `action_required`），机器人对 fork 新 tip（含 v2.8.1）重评：**failure 清零**，Key Bindings/Settings 菜单、版本落后（「Tip of master is tagged with 2.8.1 ✅」）、插件自身 subprocess 三类警告全部消失；剩余警告为 vendor 库与 sys.path（有说明）及多命令前缀（决策保留）。
 - **复审暴露一条新警告并即时修复**：命令面板设置入口 caption 须以 `Preferences: Evernote` 开头（检查器 `required_prefix`），将 `Evernote Settings` 改为 `Preferences: Evernote Settings`，并新增 caption 规范回归测试（29 个测试通过）。发布包无消费者，按会话 6 先例重打 v2.8.1 tag 至修复提交（Release 页面随 tag 名自动更新源码包）。
+- **终版复审报告**（第二次 `/review`，run 40826692995，基于 tip cf745fb）：**零 failure**，且「Tip of master is tagged with 2.8.1 ✅」；剩余 6 条警告（多命令前缀 ×1、sys.path ×2、vendor 库 subprocess ×3）均为已在 PR 评论中说明的决策保留项。tag 曾短暂落后 1 个 docs 提交，已再次移至 tip 使报告完全干净；两次移动间发布包内容 diff 为空（docs 提交被 export-ignore 排除）。
 
 ---
 
