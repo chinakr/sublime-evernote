@@ -62,6 +62,11 @@ See the [Changelog](https://github.com/bordaigorl/sublime-evernote/wiki/Changelo
 The Evernote plugin can be installed using Package Control.
 See the [wiki] for detailed instructions.
 
+Since v2.8.1 the plugin is again distributed through the official
+Package Control channel (maintained fork). On Sublime Text 4, install
+it from Package Control and you will receive tagged releases of this
+repository; Sublime Text 3 keeps receiving the upstream releases.
+
 ## First use
 
 > **PLEASE READ**

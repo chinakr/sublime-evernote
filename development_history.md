@@ -261,6 +261,29 @@
 
 ---
 
+## 2026-11-18 会话 12：合并达成，接管完成
+
+### 提示词 14
+
+> `https://github.com/sublimehq/package_control_channel/pull/9626`对于作者3天前提出的问题，我应该如何回复？
+> 已回复，下一步还需要做什么吗？
+> 目前有新进展吗？
+> 现在的进展呢？
+
+### 助手回复摘要
+
+- **关键评论解读**：
+  - braver (11-11)：接管原则上同意，询问 bot 警告能否处理。
+  - bordaigorl (11-14)：原作者明确同意交接——「我肯定不再维护了，很高兴它能找到新维护者」，合并最大障碍解除。
+  - braver (11-15)：命令前缀维持现状即可（与项目决策一致）；`sys.path` 问题定性为「未来版本再处理」；「准备好了就告诉我，我立刻 merge」。
+- **回复草稿**：向两位致谢 + 同意前缀维持 + 承认 `sys.path` 告警并给出未来方向（唯一命名 vendor 子包）+ 明确表态 ready to ship。用户已于 11-18 06:02 UTC 发布。
+- **合并达成**：braver 于 11-18 13:08 UTC 点击 merge（表态后约 7 小时）。
+- **官方渠道核实**：`repository/e.json` 中 Evernote 条目已生效——ST ≥ 4000 指向 `chinakr/sublime-evernote`（`tags: true`，用户经 Package Control 拿到 v2.8.1）；ST < 4000 通过 `base` 固定在 bordaigorl 原仓库（上游 2.7.4）。
+- **README 更新**：安装章节补充「已回归 Package Control 官方渠道」说明。
+- **遗留事项**：`sys.path` 告警的整改（vendor 目录改为唯一命名子包）列入未来版本计划，不设时间表。
+
+---
+
 ## 维护约定
 
 - 每完成一个模块立即按 Conventional Commits 提交（feat/fix/test/docs/chore…）；
